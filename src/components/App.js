@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import config from "../config";
 import SearchBar from "./SearchBar";
+import WeatherInfo from "./WeatherInfo";
 
 
 class App extends Component {
@@ -17,10 +18,10 @@ class App extends Component {
     event.preventDefault();
     console.log("search started")
     const zipCode = document.getElementById("zipCode").value;
-    console.log(zipCode)
-    console.log(config)
+    // console.log(zipCode)
+    // console.log(config)
     const searchUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&APPID=${config.apiKey}&units=imperial`;
-    console.log(searchUrl)
+    // console.log(searchUrl)
     fetch(searchUrl)
     .then((response)=>{
       return (response.json())
@@ -37,6 +38,7 @@ class App extends Component {
       <div className="container">
         <h1>Weather App Practice</h1>
         <SearchBar searchWeatherFunction={this.weatherSearch}/>
+        <WeatherInfo results={this.state.searchResults}/>
       </div>
     );
   }
